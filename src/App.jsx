@@ -2,19 +2,29 @@
 import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import GalleryCarousel from "./components/GalleryCarousel";
-import PortraitGrid from "./components/PortraitGrid";
+import PortraitCarousel from "./components/PortraitCarousel";
 import { SearchIcon } from "./components/Icons/SearchIcon";
 import { FilterIcon } from "./components/Icons/FilterIcon";
 import { CloseIcon } from "./components/Icons/CloseIcon";
 
+// Import local event images
+import hackSync from "./assets/photos/events/HackSync.svg";
+import acmverse from "./assets/photos/events/acmverse.svg";
+import designxpert from "./assets/photos/events/designxpert.svg";
+import inaugration from "./assets/photos/events/inaugration.svg";
+import innofest from "./assets/photos/events/innofest.svg";
+import smartFemina from "./assets/photos/events/smartfemina.svg";
+import step from "./assets/photos/events/step.svg";
+
 // Carousel items
 const carouselItems = [
-  { id: 1, category: "Events", imageUrl: "https://picsum.photos/800/600?random=1" },
-  { id: 2, category: "Contests", imageUrl: "https://picsum.photos/800/600?random=2" },
-  { id: 3, category: "Events", imageUrl: "https://picsum.photos/800/600?random=3" },
-  { id: 4, category: "Workshops", imageUrl: "https://picsum.photos/800/600?random=4" },
-  { id: 5, category: "Contests", imageUrl: "https://picsum.photos/800/600?random=5" },
-  { id: 6, category: "Events", imageUrl: "https://picsum.photos/800/600?random=6" },
+  { id: 1, category: "Events", imageUrl: hackSync },
+  { id: 2, category: "Contests", imageUrl: acmverse },
+  { id: 3, category: "Events", imageUrl: designxpert },
+  { id: 4, category: "Workshops", imageUrl: inaugration },
+  { id: 5, category: "Contests", imageUrl: innofest },
+  { id: 6, category: "Events", imageUrl: smartFemina },
+  { id: 7, category: "Workshops", imageUrl: step },
 ];
 
 // Portrait items
@@ -28,16 +38,15 @@ const App = () => {
   const filters = ["All", "Events", "Contests"];
 
   return (
-    <div className="min-h-screen bg-white font-sans border-l-4 border-r-4 border-cyan-100">
+    <div className="min-h-screen bg-white font-sans">
       {/* Navbar */}
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <section className="text-left mb-12">
-          <h1 className="text-6xl font-bold text-gray-900 mb-4">Gallery</h1>
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6">Capturing our journey</h2>
-          <div className="max-w-4xl space-y-4 text-gray-600 text-lg">
+          <h1 className="text-[2rem] font-bold text-gray-900 mb-4">Gallery</h1>
+          <div className="max-w-4xl space-y-4 text-gray-600 text-lg mb-20">
             <p>
               Explore the memorable moments from our ACM chapter events, workshops,
               and activities through our comprehensive photo gallery.
@@ -52,7 +61,7 @@ const App = () => {
         {/* Filters Section */}
         <section className="mb-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
-            <div className="relative w-full md:w-auto flex-grow max-w-md">
+            <div className="relative w-full md:w-auto flex-grow max-w-xs">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <SearchIcon className="h-5 w-5 text-gray-400" />
               </span>
@@ -81,11 +90,10 @@ const App = () => {
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-5 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${
-                  activeFilter === filter
-                    ? "bg-cyan-500 text-white shadow-md"
-                    : "bg-white text-gray-600 border border-gray-300 hover:bg-gray-100"
-                }`}
+                className={`px-5 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${activeFilter === filter
+                  ? "bg-cyan-500 text-white shadow-md"
+                  : "bg-white text-gray-600 border border-gray-300 hover:bg-gray-100"
+                  }`}
               >
                 {filter}
               </button>
@@ -105,7 +113,7 @@ const App = () => {
 
         {/* Portraits Section */}
         <section>
-          <PortraitGrid items={portraitItems} />
+          <PortraitCarousel items={portraitItems} />
         </section>
       </main>
     </div>
